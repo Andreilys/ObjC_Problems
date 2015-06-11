@@ -9,7 +9,21 @@
 #import "BNRPortfolio.h"
 #import "BNRStocks.h"
 
+@interface BNRPortfolio ()
+{
+    NSMutableArray *_stockHolding;
+}
+@end
+
 @implementation BNRPortfolio
+
+-(NSArray *) sortUsingValue;
+{
+    NSSortDescriptor *vid = [NSSortDescriptor sortDescriptorWithKey:@"valueInDollars" ascending:NO];
+    NSArray *holdings = [_stockHolding sortedArrayUsingDescriptors:@[vid]];
+    NSRange firstThree = NSMakeRange(0, MIN(3, [holdings count]));
+    return [holdings subarrayWithRange:firstThree];
+}
 
 //creates and stores a mutable copy in the array
 -(void)setStockHolding:(NSArray *)stockHolding

@@ -10,16 +10,10 @@
 @class BNRAssets;
 
 @interface BNREmployee : newPerson
-{
-    NSMutableArray *_assets;
-}
-
-
 
 @property (nonatomic) unsigned int employeeID;
-@property (nonatomic) unsigned int officeAlarmCode;
 @property (nonatomic) NSDate *hireDate;
-@property(nonatomic, copy) NSArray *assets;
+@property(nonatomic, copy) NSSet *assets;
 - (double)yearsOfEmployment;
 -(void)addAsset: (BNRAssets *)a;
 -(unsigned int)valueOfAssets;

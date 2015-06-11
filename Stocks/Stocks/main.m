@@ -29,6 +29,7 @@ int main(int argc, const char * argv[]) {
         [portfolio addStockHolding:stock2];
         
         
+        
         NSLog(@"Value of portfolio: $%0.2f", portfolio.valueInDollars);
         
     }

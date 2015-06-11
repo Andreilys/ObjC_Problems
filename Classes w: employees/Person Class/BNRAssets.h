@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BNREmployee;
 
 @interface BNRAssets : NSObject
 
 @property (nonatomic, copy) NSString *label;
+@property (nonatomic, weak) BNREmployee *holder;
 @property (nonatomic) unsigned int resaleValue;
 
 @end

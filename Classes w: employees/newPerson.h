@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BNREmployee;
 
 @interface newPerson : NSObject
 @property (nonatomic) float heightInMeters;
