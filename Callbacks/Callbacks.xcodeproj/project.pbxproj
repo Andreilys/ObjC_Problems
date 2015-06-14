@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271EBEB71B2D1B7F0013E14E /* BNRObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 271EBEB61B2D1B7F0013E14E /* BNRObserver.m */; };
 		273973BB1B296623000CEDED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273973BA1B296623000CEDED /* main.m */; };
 		273973C31B2966C6000CEDED /* BNRLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 273973C21B2966C5000CEDED /* BNRLogger.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		271EBEB51B2D1B7F0013E14E /* BNRObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNRObserver.h; path = ../BNRObserver.h; sourceTree = "<group>"; };
+		271EBEB61B2D1B7F0013E14E /* BNRObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNRObserver.m; path = ../BNRObserver.m; sourceTree = "<group>"; };
 		273973B71B296623000CEDED /* Callbacks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Callbacks; sourceTree = BUILT_PRODUCTS_DIR; };
 		273973BA1B296623000CEDED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		273973C11B2966C5000CEDED /* BNRLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLogger.h; sourceTree = "<group>"; };
@@ -60,6 +63,8 @@
 		273973B91B296623000CEDED /* Callbacks */ = {
 			isa = PBXGroup;
 			children = (
+				271EBEB51B2D1B7F0013E14E /* BNRObserver.h */,
+				271EBEB61B2D1B7F0013E14E /* BNRObserver.m */,
 				273973BA1B296623000CEDED /* main.m */,
 				273973C11B2966C5000CEDED /* BNRLogger.h */,
 				273973C21B2966C5000CEDED /* BNRLogger.m */,
@@ -124,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				273973C31B2966C6000CEDED /* BNRLogger.m in Sources */,
+				271EBEB71B2D1B7F0013E14E /* BNRObserver.m in Sources */,
 				273973BB1B296623000CEDED /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +247,7 @@
 				273973C01B296623000CEDED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../BNRReminderViewController.xib">
+   </FileRef>
+   <FileRef
+      location = "group:../HypnoReminder/BNRHypnosisViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:../HypnoReminder/BNRHypnosisViewController.m">
+   </FileRef>
+   <FileRef
+      location = "self:HypnoReminder.xcodeproj">
+   </FileRef>
+</Workspace>
