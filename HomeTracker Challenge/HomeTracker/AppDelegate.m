@@ -1,43 +1,31 @@
 //
 //  AppDelegate.m
-//  HypnoReminder
+//  HomeTracker
 //
-//  Created by Andrei on 6/14/15.
+//  Created by Andrei on 6/15/15.
 //  Copyright (c) 2015 Andrei. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "BNRHypnosisViewController.h"
-#import "BNRReminderViewController.h"
-#import "BNRQuizViewController.h"
-#import "BNRHypnosisView.h"
+#import "BNRItemsViewController.h"
 
 @interface AppDelegate ()
-
-<UIScrollViewDelegate>
 
 @end
 
 @implementation AppDelegate
 
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
+    // Override point for customization after application launch.
     
-    BNRHypnosisViewController *hvc = [[BNRHypnosisViewController alloc] init];
+    //Creating a bnritemsview contr
+    BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
     
-    BNRReminderViewController *rvc = [[BNRReminderViewController alloc] init];
+    self.window.rootViewController = itemsViewController;
     
-    BNRQuizViewController *qvvc = [[BNRQuizViewController alloc] init];
-    
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    
-    tabBarController.viewControllers = @[hvc, rvc, qvvc];
-    
-    
-    self.window.rootViewController = tabBarController;
-    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -72,7 +60,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.andreilyskov.HypnoReminder" in the application's documents directory.
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.andreilyskov.HomeTracker" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
@@ -81,7 +69,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"HypnoReminder" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"HomeTracker" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -95,7 +83,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HypnoReminder.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HomeTracker.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
