@@ -19,15 +19,29 @@
 
 @implementation BNRItemStore
 
+-(BOOL)saveChanges {
+    NSString *path = [self itemsArchivePath];
+    return [NSKeyedArchiver archiveRootObject:self.privateItems toFile:path];
+}
+
+-(NSString *)itemsArchivePath
+{
+    //make sure that the first argument is nsdocumentdirectory
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    //Get the one document directory from that lsit
+    NSString *documentDirectory = [documentDirectories firstObject];
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
+
+
 + (instancetype)sharedStore
 {
     static BNRItemStore *sharedStore;
 
-    // Do I need to create a sharedStore?
-    if (!sharedStore) {
-        sharedStore = [[self alloc] initPrivate];
-    }
-
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{sharedStore = [[self alloc] initPrivate];});
+    
     return sharedStore;
 }
 
@@ -44,7 +58,13 @@
 {
     self = [super init];
     if (self) {
-        _privateItems = [[NSMutableArray alloc] init];
+        NSString *path = [self itemsArchivePath];
+        _privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        //if no save
+        if(!_privateItems){
+            _privateItems = [[NSMutableArray alloc] init];
+        }
     }
     return self;
 }
@@ -56,7 +76,7 @@
 
 - (BNRItem *)createItem
 {
-    BNRItem *item = [BNRItem randomItem];
+    BNRItem *item = [[BNRItem alloc] init];
 
     [self.privateItems addObject:item];
 

@@ -11,6 +11,8 @@
 
 @interface BNRItem : NSObject
 
+<NSCoding>
+
 + (instancetype)randomItem;
 
 - (instancetype)initWithItemName:(NSString *)name

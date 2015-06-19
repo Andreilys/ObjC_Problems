@@ -15,10 +15,11 @@
 
 @property (nonatomic, readonly) NSArray *allItems;
 
+-(BOOL)saveChanges;
 + (instancetype)sharedStore;
 - (BNRItem *)createItem;
 - (void)removeItem:(BNRItem *)item;
-
+-(NSString *)itemsArchivePath;
 - (void)moveItemAtIndex:(NSInteger)fromIndex
                 toIndex:(NSInteger)toIndex;
 
