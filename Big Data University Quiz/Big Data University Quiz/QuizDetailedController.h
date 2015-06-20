@@ -12,5 +12,8 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *quizLabel;
 @property (nonatomic, strong) NSString *quiz;
+@property (nonatomic, strong) NSArray *quizQuestionArray;
+@property (weak, nonatomic) IBOutlet UILabel *quizQuestions;
+@property (nonatomic) BOOL *isSomethingEnabled;
 
 @end

@@ -1,32 +1,42 @@
 //
-//  QuizDetailedController.m
-//  Big Data University Quiz
+//  BNRImageViewController.m
+//  HomePwner
 //
-//  Created by Andrei on 6/19/15.
-//  Copyright (c) 2015 Andrei. All rights reserved.
+//  Created by Andrei on 6/20/15.
+//  Copyright (c) 2015 Big Nerd Ranch. All rights reserved.
 //
 
-#import "QuizDetailedController.h"
+#import "BNRImageViewController.h"
 
-@interface QuizDetailedController ()
-
+@interface BNRImageViewController ()
 
 @end
 
-@implementation QuizDetailedController
-
+@implementation BNRImageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(_quiz){
-        self.quizLabel.text = [NSString stringWithFormat:@"%@", _quiz];
-    }
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIImageView *imageView = (UIImageView *)self.view;
+    imageView.image = self.image;
+}
+
+-(void)loadView
+{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.view = imageView;
 }
 
 /*

@@ -11,8 +11,13 @@
 #import "BNRDetailViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+#import "BNRItemCell.h"
+#import "BNRImageStore.h"
+#import "BNRImageViewController.h"
 
 @interface BNRItemsViewController ()
+<UIPopoverControllerDelegate>
+@property (nonatomic, strong) UIPopoverController *imagePopover;
 
 @end
 
@@ -48,9 +53,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//load the nib file
+    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
+    
+    //register this nib file which contains the cell
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"BNRItemCell"];
 
-    [self.tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,8 +75,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Get a new or recycled cell
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    BNRItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell" forIndexPath:indexPath];
 
     // Set the text on the cell with the description of the item
     // that is at the nth index of items, where n = row this cell
@@ -76,8 +83,14 @@
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     BNRItem *item = items[indexPath.row];
 
-    cell.textLabel.text = [item description];
-
+    //connfigure the clel with the bnritem
+    cell.nameLabel.text = item.itemName;
+    cell.serialNumberLabel.text = item.serialNumber;
+    cell.valueLabel.text =
+    [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    
+    cell.thumbnail.image = item.thumbnail;
+    
     return cell;
 }
 
