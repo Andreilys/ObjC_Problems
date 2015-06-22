@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		27A6F75D1B2D71880059A036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A6F75C1B2D71880059A036 /* main.m */; };
 		27A6F7601B2D71880059A036 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A6F75F1B2D71880059A036 /* AppDelegate.m */; };
-		27A6F7631B2D71880059A036 /* HypnoReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27A6F7611B2D71880059A036 /* HypnoReminder.xcdatamodeld */; };
 		27A6F7661B2D71880059A036 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A6F7651B2D71880059A036 /* ViewController.m */; };
 		27A6F7691B2D71880059A036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A6F7671B2D71880059A036 /* Main.storyboard */; };
 		27A6F76B1B2D71880059A036 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27A6F76A1B2D71880059A036 /* Images.xcassets */; };
@@ -32,12 +31,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2726548F1B37BCB900525AB1 /* HypnoNerd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HypnoNerd-Prefix.pch"; sourceTree = "<group>"; };
 		27A6F7571B2D71880059A036 /* HypnoReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypnoReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A6F75B1B2D71880059A036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A6F75C1B2D71880059A036 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		27A6F75E1B2D71880059A036 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		27A6F75F1B2D71880059A036 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		27A6F7621B2D71880059A036 /* HypnoReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HypnoReminder.xcdatamodel; sourceTree = "<group>"; };
 		27A6F7641B2D71880059A036 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		27A6F7651B2D71880059A036 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		27A6F7681B2D71880059A036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,7 +107,6 @@
 				27A6F7671B2D71880059A036 /* Main.storyboard */,
 				27A6F76A1B2D71880059A036 /* Images.xcassets */,
 				27A6F76C1B2D71880059A036 /* LaunchScreen.xib */,
-				27A6F7611B2D71880059A036 /* HypnoReminder.xcdatamodeld */,
 				27A6F75A1B2D71880059A036 /* Supporting Files */,
 			);
 			path = HypnoReminder;
@@ -119,6 +117,7 @@
 			children = (
 				27A6F75B1B2D71880059A036 /* Info.plist */,
 				27A6F75C1B2D71880059A036 /* main.m */,
+				2726548F1B37BCB900525AB1 /* HypnoNerd-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27A6F7631B2D71880059A036 /* HypnoReminder.xcdatamodeld in Sources */,
 				27A6F7601B2D71880059A036 /* AppDelegate.m in Sources */,
 				27A6F7661B2D71880059A036 /* ViewController.m in Sources */,
 				27A6F7851B2D71FD0059A036 /* BNRHypnosisView.m in Sources */,
@@ -442,6 +440,7 @@
 				27A6F77F1B2D71880059A036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27A6F7801B2D71880059A036 /* Build configuration list for PBXNativeTarget "HypnoReminderTests" */ = {
 			isa = XCConfigurationList;
@@ -450,21 +449,9 @@
 				27A6F7821B2D71880059A036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		27A6F7611B2D71880059A036 /* HypnoReminder.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				27A6F7621B2D71880059A036 /* HypnoReminder.xcdatamodel */,
-			);
-			currentVersion = 27A6F7621B2D71880059A036 /* HypnoReminder.xcdatamodel */;
-			path = HypnoReminder.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 27A6F74F1B2D71880059A036 /* Project object */;
 }

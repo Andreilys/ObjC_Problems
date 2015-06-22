@@ -16,12 +16,44 @@
 #import "BNRImageViewController.h"
 
 @interface BNRItemsViewController ()
-<UIPopoverControllerDelegate>
+<UIPopoverControllerDelegate, UIDataSourceModelAssociation>
 @property (nonatomic, strong) UIPopoverController *imagePopover;
 
 @end
 
 @implementation BNRItemsViewController
+
+-(NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)path inView:(UIView *)view
+{
+    NSString *identifier = nil;
+    if (path && view){
+        //return an identifier of the given nsinex path
+        BNRItem *item = [[BNRItemStore sharedStore] allItems][path.row];
+        identifier = item.itemKey;
+    }
+    return identifier;
+}
+
+-(NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
+{
+    NSIndexPath *indexPath = nil;
+    if(identifier && view){
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        for(BNRItem *item in items){
+            if([identifier isEqualToString:item.itemKey]){
+                int row = [items indexOfObjectIdenticalTo:item];
+                indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                break;
+            }
+        }
+    }
+    return indexPath;
+}
+
++(UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    return [[self alloc]init];
+}
 
 - (instancetype)init
 {
@@ -31,6 +63,8 @@
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"Homepwner";
 
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
         // Create a new bar button item that will send
         // addNewItem: to BNRItemsViewController
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -58,7 +92,19 @@
     
     //register this nib file which contains the cell
     [self.tableView registerNib:nib forCellReuseIdentifier:@"BNRItemCell"];
+    self.tableView.restorationIdentifier = @"BNRItemsViewControllerTableView";
 
+}
+
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeBool:self.isEditing forKey:@"TableViewIsEditing"];
+    [super encodeRestorableStateWithCoder:coder];
+}
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    self.editing = [coder decodeBoolForKey:@"TableViewIsEditing"];
+    [super decodeRestorableStateWithCoder:coder];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -146,6 +192,8 @@
     };
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    
+    navController.restorationIdentifier = NSStringFromClass([navController class]);
     
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     

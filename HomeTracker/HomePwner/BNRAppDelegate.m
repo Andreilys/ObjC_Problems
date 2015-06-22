@@ -11,23 +11,67 @@
 #import "BNRItemsViewController.h"
 #import "BNRItemStore.h"
 
+NSString * const BNRNextItemValuePrefsKey = @"NextItemValue";
+NSString * const BNRNextItemNamePrefsKey = @"NextItemName";
+
 @implementation BNRAppDelegate
 
++(void)initialize
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *factorySettings = @{BNRNextItemValuePrefsKey: @75, BNRNextItemNamePrefsKey:@"Coffee Cup"};
+    [defaults registerDefaults:factorySettings];
+}
+
+-(UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    //create a new nav contorller
+    UIViewController *vc = [[UINavigationController alloc]init];
+    
+    //the last object in the path array is the restoration identifier
+    vc.restorationIdentifier = [identifierComponents lastObject];
+    
+    //if there is only 1 identifier then this is the rvc
+    if ([identifierComponents count] == 1){
+        self.window.rootViewController = vc;
+    }
+    return vc;
+}
+
+-(BOOL) application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    return YES;
+}
+
+-(BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+-(BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    //if no state restoration setup view controller hierarchy
+    if(!self.window.rootViewController){
+    
 
     // Create a BNRItemsViewController
     BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+    
+    //Give the navigation controller a restoration identifier
+    navController.restorationIdentifier = NSStringFromClass([navController class]);
 
     // Place navigation controller's view in the window hierarchy
     self.window.rootViewController = navController;
+    }
 
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

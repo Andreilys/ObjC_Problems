@@ -28,10 +28,15 @@
         UIButton *button = (UIButton*)sender;
         //here I'm able to check the tags and see which button I should go with
         if (button.tag == 1) {
+            //set the attribute of the quiz title, init the arrays for this course
             controller.quiz = @"Spark Fundamentals";
-            
+            controller.quizQuestionArray = @[@"wowow", @"yess", @"3"];
+            controller.answeraArray = @[@"try it", @"ok", @"there"];
+            controller.answerbArray = @[@"nice", @"there", @"where"];
+            controller.answercArray = @[@"nice", @"there", @"where"];
+            controller.answerdArray = @[@"nice", @"there", @"where"];
+            controller.realAnswerArray = @[@"A.", @"A.", @"A."];
         } else if (button.tag == 2) {
-            NSLog(@"works");
             controller.quiz = @"Hadoop";
         } else {
             //TODO: Code here...

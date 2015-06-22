@@ -10,6 +10,7 @@
 #import "BNRItem.h"
 #import "BNRImageStore.h"
 #import "BNRItemStore.h"
+#import "BNRAppDelegate.h"
 
 @interface BNRDetailViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
     UITextFieldDelegate, UIPopoverControllerDelegate>
@@ -25,6 +26,9 @@
 -(void)cancel:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 
 - (IBAction)takePicture:(id)sender;
 - (IBAction)backgroundTapped:(id)sender;
@@ -34,6 +38,53 @@
 @end
 
 @implementation BNRDetailViewController
+
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder{
+    [coder encodeObject:self.item.itemKey forKey:@"item.itemKey"];
+    
+    //save changes into item
+    
+    self.item.itemName = self.nameField.text;
+    self.item.serialNumber = self.serialNumberField.text;
+    self.item.valueInDollars = [self.valueField.text intValue];
+    //save changes to disk
+    [[BNRItemStore sharedStore]saveChanges];
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    NSString *itemKey = [coder decodeObjectForKey:@"item.itemKey"];
+    for(BNRItem *item in [[BNRItemStore sharedStore]allItems]){
+        if([itemKey isEqualToString:item.itemKey]){
+            self.item = item;
+            break;
+        }
+    }
+    [super decodeRestorableStateWithCoder:coder];
+}
+
+
+-(void)updateFonts
+{
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.nameLabel.font = font;
+    self.serialNumberLabel.font = font;
+    self.valueLabel.font = font;
+    self.dateLabel.font = font;
+    self.nameField.font = font;
+    self.serialNumberField.font = font;
+    self.valueField.font = font;
+                    
+}
++(UIViewController *) viewControllerWithRestorationIdentifierPath:(NSArray *)path coder:(NSCoder *)coder
+{
+    BOOL isNew = NO;
+    if([path count] == 3){
+        isNew = YES;
+    }
+    return [[self alloc] initForNewItem:isNew];
+}
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
@@ -92,6 +143,7 @@
         // Clear the imageView
         self.imageView.image = nil;
     }
+    [self updateFonts];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -105,7 +157,13 @@
     BNRItem *item = self.item;
     item.itemName = self.nameField.text;
     item.serialNumber = self.serialNumberField.text;
-    item.valueInDollars = [self.valueField.text intValue];
+    
+    int newValue = [self.valueField.text intValue];
+    if(newValue != item.valueInDollars){
+        item.valueInDollars = newValue;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:newValue forKey:BNRNextItemValuePrefsKey];
+    }
 }
 
 - (void)setItem:(BNRItem *)item
@@ -126,6 +184,9 @@
 -(instancetype)initForNewItem:(BOOL)isNew
 {
     self = [super initWithNibName:nil bundle:nil];
+    self.restorationIdentifier = NSStringFromClass([self class]);
+    self.restorationClass = [self class];
+    
     if(self){
         if(isNew){
             UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:@selector(save:)];
@@ -134,8 +195,16 @@
             UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
             self.navigationItem.leftBarButtonItem = cancelItem;
         }
+        NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+        [defaultCenter addObserver:self selector:@selector(updateFonts) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
     return self;
+}
+
+-(void) dealloc
+{
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter removeObserver:self];
 }
 
 -(void)cancel:(id)sender

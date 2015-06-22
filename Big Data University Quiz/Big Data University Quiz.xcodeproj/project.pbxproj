@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		276BEFBD1B33B641008FEEAF /* sparkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276BEFBB1B33B641008FEEAF /* sparkViewController.xib */; };
+		27364F811B38201A00E2998C /* what needs to get done in Resources */ = {isa = PBXBuildFile; fileRef = 27364F801B38201A00E2998C /* what needs to get done */; };
 		276BEFC31B33B9ED008FEEAF /* QuizDetailedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276BEFC21B33B9ED008FEEAF /* QuizDetailedController.m */; };
 		276E4A431B33AF33001BDDE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E4A421B33AF33001BDDE0 /* main.m */; };
 		276E4A461B33AF33001BDDE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E4A451B33AF33001BDDE0 /* AppDelegate.m */; };
-		276E4A491B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 276E4A471B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodeld */; };
 		276E4A4C1B33AF33001BDDE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E4A4B1B33AF33001BDDE0 /* ViewController.m */; };
 		276E4A4F1B33AF33001BDDE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276E4A4D1B33AF33001BDDE0 /* Main.storyboard */; };
 		276E4A511B33AF33001BDDE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276E4A501B33AF33001BDDE0 /* Images.xcassets */; };
@@ -30,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		276BEFBB1B33B641008FEEAF /* sparkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sparkViewController.xib; sourceTree = "<group>"; };
+		27364F801B38201A00E2998C /* what needs to get done */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "what needs to get done"; sourceTree = "<group>"; };
 		276BEFC11B33B9ED008FEEAF /* QuizDetailedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizDetailedController.h; sourceTree = "<group>"; };
 		276BEFC21B33B9ED008FEEAF /* QuizDetailedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizDetailedController.m; sourceTree = "<group>"; };
 		276E4A3D1B33AF33001BDDE0 /* Big Data University Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Big Data University Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,7 +37,6 @@
 		276E4A421B33AF33001BDDE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		276E4A441B33AF33001BDDE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		276E4A451B33AF33001BDDE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		276E4A481B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Big_Data_University_Quiz.xcdatamodel; sourceTree = "<group>"; };
 		276E4A4A1B33AF33001BDDE0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		276E4A4B1B33AF33001BDDE0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		276E4A4E1B33AF33001BDDE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +68,7 @@
 		276E4A341B33AF33001BDDE0 = {
 			isa = PBXGroup;
 			children = (
+				27364F801B38201A00E2998C /* what needs to get done */,
 				276E4A3F1B33AF33001BDDE0 /* Big Data University Quiz */,
 				276E4A5C1B33AF33001BDDE0 /* Big Data University QuizTests */,
 				276E4A3E1B33AF33001BDDE0 /* Products */,
@@ -95,10 +94,8 @@
 				276BEFC11B33B9ED008FEEAF /* QuizDetailedController.h */,
 				276BEFC21B33B9ED008FEEAF /* QuizDetailedController.m */,
 				276E4A4D1B33AF33001BDDE0 /* Main.storyboard */,
-				276BEFBB1B33B641008FEEAF /* sparkViewController.xib */,
 				276E4A501B33AF33001BDDE0 /* Images.xcassets */,
 				276E4A521B33AF33001BDDE0 /* LaunchScreen.xib */,
-				276E4A471B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodeld */,
 				276E4A401B33AF33001BDDE0 /* Supporting Files */,
 			);
 			path = "Big Data University Quiz";
@@ -210,10 +207,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				276BEFBD1B33B641008FEEAF /* sparkViewController.xib in Resources */,
 				276E4A4F1B33AF33001BDDE0 /* Main.storyboard in Resources */,
 				276E4A541B33AF33001BDDE0 /* LaunchScreen.xib in Resources */,
 				276E4A511B33AF33001BDDE0 /* Images.xcassets in Resources */,
+				27364F811B38201A00E2998C /* what needs to get done in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +229,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				276E4A461B33AF33001BDDE0 /* AppDelegate.m in Sources */,
-				276E4A491B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodeld in Sources */,
 				276E4A4C1B33AF33001BDDE0 /* ViewController.m in Sources */,
 				276BEFC31B33B9ED008FEEAF /* QuizDetailedController.m in Sources */,
 				276E4A431B33AF33001BDDE0 /* main.m in Sources */,
@@ -444,19 +440,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		276E4A471B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				276E4A481B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodel */,
-			);
-			currentVersion = 276E4A481B33AF33001BDDE0 /* Big_Data_University_Quiz.xcdatamodel */;
-			path = Big_Data_University_Quiz.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 276E4A351B33AF33001BDDE0 /* Project object */;
 }

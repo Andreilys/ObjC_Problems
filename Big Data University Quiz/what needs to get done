@@ -1,0 +1,9 @@
+ok so far you've been able to:
+made the app load the correct course
+made the app rotate questions
+made the app be able to tell which is the right answer
+
+what needs to be done:
+you need to add a back button to return to the screen (nav controller)
+you need to create another view that leads to the big data university website (maybe make a popup that links to the BDU website)
+clean up the UI/UX
