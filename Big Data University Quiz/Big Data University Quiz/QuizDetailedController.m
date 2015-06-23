@@ -17,19 +17,24 @@
 //my global variable that keeps track of the number of questions as well as the correct answer
 static int count = 0;
 static int score = 0;
+static int incorrect = 0;
 
-//button pressed
-- (IBAction)answeraPressed:(id)sender {
-    //here whenever count is greater than the current question count, I stop
-    UIButton *resultButton = (UIButton *)sender;
-    if ([resultButton.currentTitle isEqual:_realAnswerArray[count]]) {
-        score++;
-        self.realAnswer.text = [NSString stringWithFormat:@"%d", score];
-    }
+//when home button is pressed, return to home screen
+- (IBAction)homeButton:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+- (IBAction)nextQuestion:(id)sender {
+    NSLog(@"works");
+    //reset back to gray
+    [_answerA setBackgroundColor:[UIColor lightGrayColor]];
+    [_answerB setBackgroundColor:[UIColor lightGrayColor]];
+    [_answerC setBackgroundColor:[UIColor lightGrayColor]];
+    [_answerD setBackgroundColor:[UIColor lightGrayColor]];
     
-    
-    if(count < [_quizQuestionArray count] - 1){
-        count++;
+    if(count < [_quizQuestionArray count]){
         self.quizQuestions.text = [NSString stringWithFormat:@"%@", _quizQuestionArray[count]];
         self.answerA.text = [NSString stringWithFormat:@"%@", _answeraArray[count]];
         self.answerB.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
@@ -50,12 +55,27 @@ static int score = 0;
     self.answerB.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
     self.answerC.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
     self.answerD.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
+    NSLog(@"%d, %d, %d,", count, incorrect, score);
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    _answeraArray = nil;
+    _answerbArray = nil;
+    _answercArray = nil;
+    _answerdArray = nil;
+    _quizQuestionArray = nil;
+    _realAnswerArray = nil;
+    count = 0;
+    score = 0;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 /*
 #pragma mark - Navigation

@@ -17,10 +17,11 @@
 @property (nonatomic, strong) NSArray *answercArray;
 @property (nonatomic, strong) NSArray *answerdArray;
 @property (nonatomic, strong) NSArray *realAnswerArray;
+@property (nonatomic, strong) NSArray *quizQuestionArray;
+
 
 @property (nonatomic, strong) IBOutlet UILabel *quizLabel;
 @property (nonatomic, strong) NSString *quiz;
-@property (nonatomic, strong) NSArray *quizQuestionArray;
 
 @property (weak, nonatomic) IBOutlet UILabel *quizQuestions;
 @property (weak, nonatomic) IBOutlet UILabel *answerA;
@@ -28,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *answerC;
 @property (weak, nonatomic) IBOutlet UILabel *answerD;
 @property (weak, nonatomic) IBOutlet UILabel *realAnswer;
+
 
 
 

@@ -2,6 +2,8 @@ ok so far you've been able to:
 made the app load the correct course
 made the app rotate questions
 made the app be able to tell which is the right answer
+home button works now
+
 
 what needs to be done:
 you need to add a back button to return to the screen (nav controller)
