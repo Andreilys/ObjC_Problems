@@ -7,8 +7,9 @@
 //
 
 #import "QuizDetailedController.h"
+#import "FinishViewController.h"
 
-@interface QuizDetailedController ()
+@interface QuizDetailedController () <UIAlertViewDelegate>
 
 @end
 
@@ -26,14 +27,19 @@ static int incorrect = 0;
 
 
 
-- (IBAction)nextQuestion:(id)sender {
-    NSLog(@"works");
-    //reset back to gray
-    [_answerA setBackgroundColor:[UIColor lightGrayColor]];
-    [_answerB setBackgroundColor:[UIColor lightGrayColor]];
-    [_answerC setBackgroundColor:[UIColor lightGrayColor]];
-    [_answerD setBackgroundColor:[UIColor lightGrayColor]];
+- (IBAction)answerPressed:(id)sender {
+    //when button is pressed we need to get the senders title in order to compare to the answer array (which will have a.,b.,c.,d.
+    UIButton *resultButton = (UIButton *)sender;
+    if ([resultButton.currentTitle isEqual:_realAnswerArray[count]]) {
+        score++;
+        self.realAnswer.text = [NSString stringWithFormat:@"Correct: %d, Incorrect: %d", score, incorrect];
+    } else {
+        incorrect++;
+        self.realAnswer.text = [NSString stringWithFormat:@"Correct: %d, Incorrect: %d", score, incorrect];
+    }
     
+    count++;
+    //reset for new questions
     if(count < [_quizQuestionArray count]){
         self.quizQuestions.text = [NSString stringWithFormat:@"%@", _quizQuestionArray[count]];
         self.answerA.text = [NSString stringWithFormat:@"%@", _answeraArray[count]];
@@ -41,10 +47,33 @@ static int incorrect = 0;
         self.answerC.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
         self.answerD.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
     } else {
-        self.view.backgroundColor = [UIColor blackColor];
-    }
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"My Alert"
+                                                                       message:(@"Congratulations! You've finished the quiz. Click the Home button to return to the screen, or the BDU button to review content on our website.")
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"BDU" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                                                  FinishViewController *viewController = (FinishViewController *)[storyboard instantiateViewControllerWithIdentifier:@"UIWebView"];
+                                                                  [self presentViewController:viewController animated:YES completion:nil];
+                                                              }];
+        
+        UIAlertAction* homeAction = [UIAlertAction actionWithTitle:@"Home" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 
+                                                              }];
+
+
+
+    
+        [alert addAction:homeAction];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +84,6 @@ static int incorrect = 0;
     self.answerB.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
     self.answerC.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
     self.answerD.text = [NSString stringWithFormat:@"%@", _answerbArray[count]];
-    NSLog(@"%d, %d, %d,", count, incorrect, score);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -67,6 +95,7 @@ static int incorrect = 0;
     _quizQuestionArray = nil;
     _realAnswerArray = nil;
     count = 0;
+    incorrect = 0;
     score = 0;
 }
 - (void)didReceiveMemoryWarning {
