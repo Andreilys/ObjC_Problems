@@ -332,7 +332,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvc-h7-MxI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="8tP-b0-wp6">
+                                    <navigationItem title="Big Data University" id="8tP-b0-wp6">
                                         <barButtonItem key="leftBarButtonItem" title="Home" id="g5y-lX-mf3">
                                             <connections>
                                                 <action selector="home:" destination="u53-bG-COA" id="pG2-S6-LX1"/>
